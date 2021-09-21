@@ -1,0 +1,12 @@
+apiVersion: v1 # Version de la APP
+kind: Pod # El tipo de componente que estamos creando, en este caso un POD
+metadata: # Información sombre el componente que estamos creando
+  name: nginx
+  labels:
+    zone: prod
+    version: v1
+    otra: mi-etiqueta
+spec: # Especificaciones/carcteristicas de o los contenedores, generalmente suelen tener un solo contenedores
+  containers:
+   - name: nginx   
+     image: maojeda21/nginx:v1

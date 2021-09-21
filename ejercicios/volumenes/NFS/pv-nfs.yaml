@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle #Forma de recuperar el almacenamiento cuando se cae un POD, la reutiliza cuando se crea un nuevo POD.
+  storageClassName: volumen-nfs #Nombre con el cual los PVC van a poder "reclamar" el espacio persistente.
+  nfs:
+    path: /media/infra/DATOS/kubernetes/datos #Path o directorio en donde se encuentra el almacenamiento NFS
+    server: kmasterf #Nombre o IP del cluster MASTER.

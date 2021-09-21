@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pv-claim
+spec:
+  storageClassName: sistemaficheros #Nombre del PV del cual tomamos el espacio en disco del HOST.
+  accessModes:
+    - ReadWriteOnce #Debe coincidir con el modo de de acceso del PV.
+  resources:
+    requests:
+      storage: 5Gi #Espacio que este objeto "reclama" al PV.

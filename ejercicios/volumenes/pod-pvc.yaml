@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pv-pod
+spec:
+  volumes:
+    - name: pv-storage
+      persistentVolumeClaim: #Asociamos el volumen del POD a un PVC
+        claimName: pv-claim #El POD se asocia con el PVC de nombre pv-claim -> archivo:"pvclaim.yaml"
+  containers:
+    - name: task-pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts: #Directorio dentro del contenedor.
+        - mountPath: "/usr/share/nginx/html" #path: dentro del contenedor 
+          name: pv-storage #Indicamos el volumen al que estará asociado el path del contenedor.

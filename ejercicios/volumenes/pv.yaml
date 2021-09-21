@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: sistemaficheros #Nombre que le damos para que los demas PV-CLAIM puedan tomar espacio de éste PV.
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce #Indica que a este PV puede ser leido/accedido de a un nodo a la vez.
+  hostPath: #Indica el directorio de la PC/VM HOST
+    path: "/mnt/data"

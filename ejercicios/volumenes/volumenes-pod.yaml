@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volumenes-pod
+  labels:
+    name: volume-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts: #Indicamos que directorios se van a crear/montar dentro del contenedor.
+      - mountPath: /home #Creamos un directorio "/home" en el contenedor
+        name: home #Indicamos el nombre del directorio creado con el cual haremos referencia al directorio mountPath en el apartado de "Volumes"
+      - mountPath: /git
+        name: git
+        readOnly: true #Indicamos que el directorio "/git" será de "solo lectura".
+      - mountPath: /temp
+        name: temp 
+  volumes: #Mapeamos los volumenes de los contenedores creados anteriormente a espacios en disco del host.
+    - name: home
+      hostPath: #Asociamos a un determinado fichero dentro de nuestro disco del host.
+        path: /home/maojeda/Kubernetes/ejercicios/volumenes/volumen-pod/
+    - name: git 
+      gitRepo: #Etiqueta que nos permite conectar con un repositorio en la nube, se clona el directorio de la nube en nuestro volumen del host/contenedor.
+        repository: https://github.com/maojeda21/k8s
+    - name: temp
+      emptyDir: {} #Directorio temporal, una vez que el contenedor deja de existir, tambien lo hará el volumen.

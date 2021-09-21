@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-nfs
+spec:
+  storageClassName: volumen-nfs #Nombre del PV del cual se "reclamar" espacio persistente en disco.
+  accessModes:
+    - ReadWriteMany #Es accedido por varios nodo a la vez
+  resources:
+    requests:
+      storage: 5Gi #Cantidad de espacio que "reclaamara" al PV.

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tomcat2
+  labels:
+    estado: "Testing" # Las etiquetas generalmente son nombres inventados por nosotros, en este caso estado: "desarrollo"
+    responsable: "Pedro"
+spec:
+  containers:
+  - name: tomcat2
+    image: tomcat

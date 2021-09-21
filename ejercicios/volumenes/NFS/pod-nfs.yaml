@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-nfs
+spec:
+  containers:
+  - name: nginx-nfs
+    image: nginx
+    volumeMounts: #Los puntos de montajes
+      - mountPath: /usr/share/nginx/html #Path de montaje/mapeo dentro del contenedor
+        name: nfs-vol #Nombre para referirse al punto de montaje.
+  volumes: #Define la asosiacion de los volumenes entre el host y los contenedores.
+    - name: nfs-vol #Toma el punto de montaje del contenedor.
+      persistentVolumeClaim:
+        claimName: nfs-pvc #Define que el POD va a tomar espacio del PV(pv-nfs) mediante el PVC(pvc-nfs).

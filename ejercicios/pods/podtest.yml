@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app1-rc
+  labels:
+    app: app1
+    type: front-end
+spec:
+    containers:
+      - name: myapp
+        image: <Image>
+
+metadata:
+spec:
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tomcat1
+  labels:
+    estado: "desarrollo" # Las etiquetas generalmente son nombres inventados por nosotros, en este caso estado: "desarrollo"
+    responsable: "Juan"
+  annotations:
+    doc: "se debe compliar con gcc"
+    adjunto: "ejmplo de anotacion"
+spec:
+  containers:
+  - name: tomcat1
+    image: tomcat
